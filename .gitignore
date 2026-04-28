@@ -60,3 +60,4 @@ prisma/migrations/
 
 # Docker
 *.pid
+/generated/prisma

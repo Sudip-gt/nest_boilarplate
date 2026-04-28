@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import appConfig from './config/app.config';
 import databaseConfig from './config/database.config';
+import { PrismaModule } from './infrastructure/prisma/prisma.module';
 
 @Module({
   imports: [
@@ -10,6 +11,7 @@ import databaseConfig from './config/database.config';
       envFilePath: ['.env'],
       load: [appConfig, databaseConfig],
     }),
+    PrismaModule,
   ],
   controllers: [],
   providers: [],
