@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
+import { AppController } from './app.controller';
 import appConfig from './config/app.config';
 import databaseConfig from './config/database.config';
 import { HealthModule } from './health/health.module';
@@ -25,7 +26,7 @@ import { UsersModule } from './modules/users/users.module';
     HealthModule,
     UsersModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {}

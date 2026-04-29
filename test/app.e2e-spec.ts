@@ -14,9 +14,7 @@ describe('AppController (e2e)', () => {
     })
       .overrideProvider(PrismaHealthIndicator)
       .useValue({
-        pingCheck: jest
-          .fn()
-          .mockResolvedValue({ database: { status: 'up' } }),
+        pingCheck: jest.fn().mockResolvedValue({ database: { status: 'up' } }),
       })
       .compile();
 
