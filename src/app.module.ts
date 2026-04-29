@@ -16,4 +16,4 @@ import { PrismaModule } from './infrastructure/prisma/prisma.module';
   controllers: [],
   providers: [],
 })
-export class AppModule { }
+export class AppModule {}
