@@ -13,7 +13,7 @@ export class UsersService {
   constructor(
     @Inject(USER_REPOSITORY)
     private readonly userRepository: UserRepository,
-  ) {}
+  ) { }
 
   findAll(): Promise<User[]> {
     return this.userRepository.findAll();
@@ -27,7 +27,11 @@ export class UsersService {
     return user;
   }
 
-  async create(data: { email: string; name: string }): Promise<User> {
+  async create(data: {
+    email: string;
+    name: string;
+    role?: string;
+  }): Promise<User> {
     const existing = await this.userRepository.findByEmail(data.email);
     if (existing) {
       throw new ConflictException(`Email ${data.email} is already in use`);

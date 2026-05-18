@@ -1,6 +1,6 @@
 import { ConflictException, NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { User } from '../domain/entities/user.entity';
+import { Role, User } from '../domain/entities/user.entity';
 import {
   USER_REPOSITORY,
   type UserRepository,
@@ -33,7 +33,13 @@ describe('UsersService', () => {
   });
 
   it('returns all users', async () => {
-    const user = new User('1', 'john@example.com', 'John', new Date());
+    const user = new User(
+      '1',
+      'john@example.com',
+      'John',
+      new Date(),
+      Role.USER,
+    );
     userRepository.findAll.mockResolvedValue([user]);
 
     await expect(service.findAll()).resolves.toEqual([user]);
@@ -48,7 +54,13 @@ describe('UsersService', () => {
   });
 
   it('throws when email is already in use', async () => {
-    const existing = new User('1', 'john@example.com', 'John', new Date());
+    const existing = new User(
+      '1',
+      'john@example.com',
+      'John',
+      new Date(),
+      Role.USER,
+    );
     userRepository.findByEmail.mockResolvedValue(existing);
 
     await expect(

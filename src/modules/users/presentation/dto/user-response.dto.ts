@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { User } from '../../domain/entities/user.entity';
+import { Role, User } from '../../domain/entities/user.entity';
 
 export class UserResponseDto {
   @ApiProperty()
@@ -14,12 +14,16 @@ export class UserResponseDto {
   @ApiProperty()
   createdAt!: Date;
 
+  @ApiProperty({ enum: Role })
+  role!: Role;
+
   static fromDomain(user: User): UserResponseDto {
     const dto = new UserResponseDto();
     dto.id = user.id;
     dto.email = user.email;
     dto.name = user.name;
     dto.createdAt = user.createdAt;
+    dto.role = user.role;
     return dto;
   }
 }
